@@ -1,0 +1,9 @@
+*.log
+.sass-cache/
+*.css.map
+wordpress/wp-content/uploads/
+node_modules/
+db.bat
+.idea/
+.orig
+.DS_Store

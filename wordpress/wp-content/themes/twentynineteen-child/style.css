@@ -1,0 +1,49 @@
+/*
+ Theme Name:   Twenty Nineteen Child
+ Theme URI:    http://example.com/twenty-fifteen-child/
+ Description:  Twenty Nineteen Child Theme
+ Author:       Charlotte M
+ Author URI:   http://example.com
+ Template:     twentynineteen
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  twentynineteenchild
+*/
+
+
+/*homepage*/
+#post-2 {
+    height:100vh;
+    background-image: url('./hongkong.jpg');
+    background-size:cover;
+}
+
+#post-2 .entry-title {
+    display:none;
+}
+
+#post-2 h2 {
+    background-color:rgba(88,88,88,0.7);
+    width:
+}
+
+
+
+/*footer*/
+.entry-footer,.imprint{
+    display:none;
+}
+
+/*posts*/
+@media only screen and (min-width: 1168px) {
+.entry .entry-content > * {
+    max-width:75vw;
+}
+}
+
+#post-5 {
+    background-image: url('./hongkong.jpg');
+    background-size: cover;
+}
