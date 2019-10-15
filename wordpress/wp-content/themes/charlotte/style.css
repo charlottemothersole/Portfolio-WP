@@ -373,17 +373,19 @@ footer {
     align-items: center;
     justify-content: center;
     position:fixed;
+    box-shadow: -3px 3px 4px rgba(0,0,0,0.4);
+    z-index:99;
+    
 }
 
 .contact-tab {  
-    transform:translateY(-100%);
+    transform:translateY(-150%);
 }
 
 .contact_tab_active {
     transform:translateY(250%);
     transition:1s;
-    transition-timing-function: ease;
-    position:fixed;
+    transition-timing-function: ease;    
     right:0;
 }
 
