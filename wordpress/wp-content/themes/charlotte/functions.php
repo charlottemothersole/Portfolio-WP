@@ -11,6 +11,16 @@ function charlotte_scripts() {
 wp_enqueue_script('script',get_template_directory_uri(). '/script.js',);
 }
 
+//setting featured image function for posts
+if(function_exists('add_theme_support')) {
+add_theme_support('post-thumbnails');
+set_post_thumbnail_size('category-thumbnail');
+
+add_image_size('category-hero',300,9999);
+add_image_size('category-thumbnail',200,200,array('left','top'));
+
+}
+
 
 /*function register_my_menus() {
     register_nav_menus(
