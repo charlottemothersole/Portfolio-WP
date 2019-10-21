@@ -4,6 +4,14 @@
  Author:       Charlotte M
 */
 
+:root {
+    --dark-grey-solid:#262626;
+    --dark-grey-translucent:rgba(38,38,38,0.8);
+    --light-grey-solid:#E4E5E8;
+    --burgundy-solid:rgba(77,0,17,1);
+    --cream:#FFFDD0;
+    --off-white:#f5f5f5;
+}
 
 html, body {
     margin:0px;
@@ -192,14 +200,16 @@ html, body {
     flex-direction:row;
     justify-content: space-between;
     align-items: center;
-    padding-top:10vh;
+    padding-top:15vh;
 }
 
 #posts-container {
     display:flex;
     flex-direction:column;
     align-items: center;
-    flex:4;
+    flex:6;
+    height:100%;
+    
 }
 
 #sidebar-container {    
@@ -212,28 +222,44 @@ html, body {
     justify-content: flex-end;
 }
 
-#sidebar {
-
-}
-
 .hide {
     display:none;
 }
 
-#sidebar-tab {
-    background-color: white;
-    
+#sidebar-exit {
+    font-weight:600;
+    color:var(--dark-grey-solid);
+    float:right;
+    margin:0 15px 0 0;
+}
+
+#sidebar-dots {
+    width:15px;
+    line-height:10px;
+    margin:40px 2px 40px 12px;
+    font-weight:bold;
+}
+
+#sidebar {
+    background-color: var(--light-grey-solid);
+    color:var(--burgundy-solid);
+}
+
+.sidebar-links {
+    list-style-image:url('./line.png');
 }
 
 .sidebar-active {
-    background-color: white;
+    background-color: var(--light-grey-solid);
+    color:var(--burgundy-solid);
     height:80vh;
     width:230px;
+    padding:15px;
 }
 
 .sidebar-inactive {
     background-color: white;
-    height:10vh;
+    height:100px;
     width:50px;
 }
 
@@ -241,22 +267,75 @@ html, body {
     height:500px;
     width:60vw;
     background-color:white;
-    margin: 10vh 0;
+    /*margin: 10vh 0;*/
     border-radius:200px 200px 5px;
+    padding:20px;
+    line-height: 1.5;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.post-header {
+    text-align: center;
+    color:var(--dark-grey-solid);  
+    max-width:80%;
+    overflow-wrap:break-word;
+}
+
+.tag-list {
+    display:flex;   
+    margin-bottom:20px; 
+}
+
+.tag-item {
+    padding:0 5px;
+}
+
+.post-link {
+    text-decoration: none;
+    margin:10vh 0;
+}
+
+#thumbnail-container {
+    float:left; 
+    margin: 0 20px;
+    display:flex;
+}
+
+.post-content {
+    margin-top:25px;
+    text-indent:30px;
+    color:var(--dark-grey-solid);    
 }
 
 .single-post-container {
     display:flex;
     flex:4;
-    justify-content: center;    
+    justify-content: center; 
+    
 }
 
 .single-post {
     background-color: white;
-    width:60vw;
-    padding:5%;
+    width:65vw;
+    min-width:320px;
+    padding:2.5%;
     box-sizing: border-box;
     line-height: 3.5vh;
+    height:100%;
+    margin:120px 0;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+#post-header {
+    font-size:2rem;
+}
+
+#post-tagline {
+    font-size:1.3rem;
 }
 
 #tags {
@@ -264,6 +343,58 @@ html, body {
     padding:0;
     display:flex;
     justify-items: flex-start;
+}
+
+#tags li {
+    margin-right:15px;
+    font-style: italic;
+}
+
+#single-post-tags {
+    text-decoration: none;
+}
+
+#single-post-tags >* {
+    font-style: italic;
+    text-decoration: none;
+    color:var(--dark-grey-solid);
+}
+
+.alignright {
+    float:right;
+    margin: 20px;
+    box-shadow:-2px 1px 3px black;
+}
+
+.alignleft {
+    float:left;
+    margin: 20px;
+    box-shadow:-2px 1px 4px black;
+}
+
+
+.post-img {    
+    height:300px;
+    width:300px;
+    margin:20px;
+    box-shadow:-2px 1px 3px black;
+}
+
+.post-img1 {       
+    float:right;    
+}
+
+#post-img2 {
+    background:url('./work.jpg') no-repeat;
+    background-size: 300px 300px;
+    float:left; 
+}
+
+#post-navigation {
+    display:flex;
+    justify-content: space-between;
+    font-weight:bold;
+    width:100%;
 }
 
 #contact {
