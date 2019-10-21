@@ -32,11 +32,16 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar.className='sidebar-inactive';
         //hide 'close' <p> element when inactive
         document.getElementById('sidebar-exit').classList.add('hide');
+        document.getElementById('sidebar-dots').classList.remove('hide');
         //reassign variable
         sidebarActive=false;
+        //if sidebar inactive change to active
       } else if(sidebar.className ==='sidebar-inactive'){
-        sidebar.className='sidebar-active';      
+        sidebar.className='sidebar-active';  
+        //show 'close' <p> element when active    
         document.getElementById('sidebar-exit').classList.remove('hide');
+        //hide '...' <p> element when active        
+        document.getElementById('sidebar-dots').classList.add('hide');
       }
     }
   } 
@@ -58,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function () {
       sidebar.className ='sidebar-active';
       //reenable 'close' <p> element on opening sidebar
       sidebarClose.classList.remove('hide');
+      //hide '...' <p> element on opening sidebar
+      document.getElementById('sidebar-dots').classList.add('hide');
       //reassign statuses to true
       clickActive = true;
       sidebarActive=true;
@@ -70,6 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
     sidebar.className='sidebar-inactive';
     //add 'hide' class to 'close' <p> element on closing
     sidebarClose.classList.add('hide');
+    //show '...' <p> element on closing
+    document.getElementById('sidebar-dots').classList.remove('hide');
     //reassign statuses to false
     clickActive=false;
     sidebarActive=false;    
