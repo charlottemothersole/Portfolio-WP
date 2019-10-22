@@ -33,22 +33,25 @@ if( !defined( 'ABSPATH' ) ) { exit; }
              }
             ?> 
                     </div>
-                    <div class='post-content'> 
+                    <div class='post-content module'> 
                         <div id='thumbnail-container'> <?php  echo get_the_post_thumbnail($single_post); ?> </div> 
-                        <p style='margin:0'><?php echo get_the_excerpt($single_post); ?></p>
+                        <p id='excerpt'><?php echo get_the_excerpt($single_post); ?></p>
                     </div> 
                     
                 </div>        
-            </a>  
+            </a> 
+            
         <?php
         }
         ?>
     </div>
     <div id='sidebar-container'>
+    <?php get_template_part('partials/sidebar'); ?>
     </div>
 </section>
 
 <?php 
+
 /* to access footer.php*/
 get_footer();
 ?>

@@ -13,10 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  //SIDEBAR
+  //SIDEBAR 
+  
   //defining sidebar tab clicked status
   let clickActive = false;
   let sidebarActive = true;
+  let clickClose = false;
   //define elements as variables
   const sidebar = document.getElementById('sidebar');
   const sidebarClose = document.getElementById('sidebar-exit');
@@ -27,21 +29,26 @@ document.addEventListener('DOMContentLoaded', function () {
   function handleSidebar() {
     const sidebar = document.getElementById("sidebar");
     if(clickActive===false) {
-      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {      
+      if (document.body.scrollTop > 50 && window.innerWidth >=700 || document.documentElement.scrollTop > 50 && window.innerWidth >=700) {      
         //change sidebar class to inactive 
         sidebar.className='sidebar-inactive';
         //hide 'close' <p> element when inactive
         document.getElementById('sidebar-exit').classList.add('hide');
+        //show 'dots' <p> element when inactive
         document.getElementById('sidebar-dots').classList.remove('hide');
+        //hide links <ul> elements when inactive
+        document.getElementById('sidebar-links').classList.add('hide');
         //reassign variable
         sidebarActive=false;
         //if sidebar inactive change to active
-      } else if(sidebar.className ==='sidebar-inactive'){
+      } else if(sidebar.className ==='sidebar-inactive' && clickClose ===false){
         sidebar.className='sidebar-active';  
         //show 'close' <p> element when active    
         document.getElementById('sidebar-exit').classList.remove('hide');
         //hide '...' <p> element when active        
         document.getElementById('sidebar-dots').classList.add('hide');
+        //show links <ul> elements when inactive
+        document.getElementById('sidebar-links').classList.remove('hide');
       }
     }
   } 
@@ -65,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
       sidebarClose.classList.remove('hide');
       //hide '...' <p> element on opening sidebar
       document.getElementById('sidebar-dots').classList.add('hide');
+      //show links <ul> elements when inactive
+      document.getElementById('sidebar-links').classList.remove('hide');
       //reassign statuses to true
       clickActive = true;
       sidebarActive=true;
@@ -79,9 +88,35 @@ document.addEventListener('DOMContentLoaded', function () {
     sidebarClose.classList.add('hide');
     //show '...' <p> element on closing
     document.getElementById('sidebar-dots').classList.remove('hide');
+    //hide links <ul> elements when inactive
+    document.getElementById('sidebar-links').classList.add('hide');
     //reassign statuses to false
     clickActive=false;
-    sidebarActive=false;    
-  }        
+    sidebarActive=false;   
+    //reassign status to true
+    clickClose=true; 
+  }      
+
+  let listActive = false;
+  const category = document.querySelector('.sidebar-list');
+  
+  category.addEventListener('click', toggleList);
+
+  function toggleList() { 
+     
+    const list = document.getElementById('category-links');
+    
+    if(listActive===false){
+    list.style.display = 'block';
+    listActive = true;
+    } else if(listActive ===true) {      
+      list.style.display = 'none';
+      listActive = false;
+    }
+  }
+
+
+
 
 })
+

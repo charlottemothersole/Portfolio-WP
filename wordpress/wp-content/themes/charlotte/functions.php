@@ -21,6 +21,17 @@ add_image_size('category-thumbnail',200,200,array('left','top'));
 
 }
 
+/*to filter number of words in excerpt*/
+function wpdocs_custom_excerpt_length($length) {
+  return 40;
+}
+add_filter('excerpt_length','wpdocs_custom_excerpt_length');
+
+/*to filter 'read more' suffix on excerpt*/
+function wpdocs_excerpt_more( $more ) {
+  return '...';
+}
+add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
 
 /*function register_my_menus() {
     register_nav_menus(
