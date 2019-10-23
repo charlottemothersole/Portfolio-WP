@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
     clickClose=true; 
   }      
 
+  //toggle 'Posts By Category' sidebar link to expand/shrink
   let listActive = false;
   const category = document.querySelector('.sidebar-list');
   

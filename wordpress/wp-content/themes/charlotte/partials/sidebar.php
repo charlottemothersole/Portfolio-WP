@@ -13,9 +13,9 @@ if($toggle_sidebar){
     <p id='sidebar-exit'>Close</p>
     <p id='sidebar-dots' class='hide'>...</p>
     <ul id='sidebar-links'>
-        <li><a class='sidebar-link'>Latest Posts</a></li>
-        <li><a class='sidebar-link'>Archived Posts</a></li>
-        <li class='sidebar-list'>Posts By Category
+        <li id='latest-posts' ><a class='sidebar-link'>Latest Posts</a></li>
+        <li id='archived-posts'><a  class='sidebar-link'>Archived Posts</a></li>
+        <li id='posts-by-category' class='sidebar-list'>Posts By Category
             <ul id='category-links'>
                 <li class='sidebar-link'><a>category</a></li>
                 <li class='sidebar-link'><a>category</a></li>

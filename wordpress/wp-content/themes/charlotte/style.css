@@ -208,17 +208,22 @@ html, body {
     align-items: center;
     flex:6;
     height:100%;
-    
+    width:85vw;
 }
 
 #sidebar-container {    
-    height:100vh;
+    height:70vh;
     width:15vw;
     flex:1;
     display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    position:fixed;
+    right:0;
+    margin:0 0 15vh 0;
+    top:25vh;
+    max-height:580px;
 }
 
 .hide {
@@ -237,30 +242,70 @@ html, body {
     line-height:10px;
     margin:40px 2px 40px 12px;
     font-weight:bold;
+    font-size:1.3em;
 }
 
 #sidebar {
     background-color: var(--light-grey-solid);
     color:var(--burgundy-solid);
     position:fixed;
+    box-shadow: -2px 3px 6px var(--dark-grey-translucent);
+    border-radius: 5px 0 0 5px;
+    height:65vh;
+    max-height:600px;
 }
 
-.sidebar-links {
-    list-style-image:url('./line.png');
+#sidebar-links{  
+    list-style-type: circle;
+    padding-left:15px;
+    margin-top:60px;
+}
+
+#latest-posts, #archived-posts,#posts-by-category {
+    list-style-type:none;
+    padding:30px 0 30px 80px;
+    background-position:left center;    
+    background-repeat:no-repeat;
+    margin:20px 0;
+    font-weight:600;
+    width:100px;
+}
+
+#latest-posts {
+    background-image: url(./blog50px.png);    
+}
+
+#archived-posts {
+    background-image: url(./archive45px.png);
+}
+
+#posts-by-category {
+    background-image: url(./tag50px.png);
+    background-position:left top;  
+    padding:0 0 30px 80px;
 }
 
 .sidebar-active {
     background-color: var(--light-grey-solid);
     color:var(--burgundy-solid);
+    font-size:1.2em;
     height:80vh;
     width:230px;
     padding:15px;
     transition: 1s;
 }
 
+#category-links {
+    display:none;
+    list-style-image: url(./hashtag.png);
+    font-weight:400;
+    font-style:italic;
+}
+
+
 .sidebar-inactive {
     background-color: white;
-    height:100px;
+    height:100px !important;
     width:50px;
     transition: 1s;
 }
@@ -692,7 +737,8 @@ footer {
     }
 
     #sidebar {
-        position:static;             
+        position:static; 
+        z-index:1;           
     }
 
     .sidebar-active {
@@ -707,12 +753,7 @@ footer {
         height:100%;        
         margin:auto 20px;           
     }
-
-    #category-links {
-        display:none;
-    }
-
-    
+       
     #sidebar-links >* {
         margin:0 auto;
     }
@@ -732,6 +773,7 @@ footer {
     #posts {
         flex-direction:column;
     }
+    
 }
 
 @media only screen and (max-width:450px) {
