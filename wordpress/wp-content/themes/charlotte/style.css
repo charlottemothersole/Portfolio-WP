@@ -237,6 +237,11 @@ html, body {
     margin:0 15px 0 0;
 }
 
+#sidebar-exit:hover, #sidebar li:hover {
+    transform:scale(1.05);
+    cursor:pointer;
+}
+
 #sidebar-dots {
     width:15px;
     line-height:10px;
@@ -257,7 +262,7 @@ html, body {
 
 #sidebar-links{  
     list-style-type: circle;
-    padding-left:15px;
+    padding-left:30px;
     margin-top:60px;
 }
 
@@ -285,6 +290,17 @@ html, body {
     padding:0 0 30px 80px;
 }
 
+#sidebar-footer {
+    height:30%;
+    width:100%;
+    border-top:1px solid var(--dark-grey-solid);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding:0 15px 15px 15px;
+}
+
 .sidebar-active {
     background-color: var(--light-grey-solid);
     color:var(--burgundy-solid);
@@ -292,7 +308,7 @@ html, body {
     height:80vh;
     width:230px;
     padding:15px;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 #category-links {

@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //define elements as variables
   const sidebar = document.getElementById('sidebar');
   const sidebarClose = document.getElementById('sidebar-exit');
+  const itemsToHide = document.querySelectorAll('.js-hide-on-active');
 
   //function to auto hide sidebar on scroll unless tab was clicked
   window.onscroll = function() {handleSidebar()};
@@ -32,23 +33,23 @@ document.addEventListener('DOMContentLoaded', function () {
       if (document.body.scrollTop > 50 && window.innerWidth >=700 || document.documentElement.scrollTop > 50 && window.innerWidth >=700) {      
         //change sidebar class to inactive 
         sidebar.className='sidebar-inactive';
-        //hide 'close' <p> element when inactive
-        document.getElementById('sidebar-exit').classList.add('hide');
+        //hide elements when inactive        
+        for(i=0;i<itemsToHide.length;i++) {
+          itemsToHide[i].classList.add('hide');
+        }
         //show 'dots' <p> element when inactive
         document.getElementById('sidebar-dots').classList.remove('hide');
-        //hide links <ul> elements when inactive
-        document.getElementById('sidebar-links').classList.add('hide');
-        //reassign variable
+        //reassign variable*/
         sidebarActive=false;
         //if sidebar inactive change to active
       } else if(sidebar.className ==='sidebar-inactive' && clickClose ===false){
-        sidebar.className='sidebar-active';  
-        //show 'close' <p> element when active    
-        document.getElementById('sidebar-exit').classList.remove('hide');
+        sidebar.className='sidebar-active'; 
+        //show elements when active
+        for(i=0;i<itemsToHide.length;i++) {
+          itemsToHide[i].classList.remove('hide');
+        } 
         //hide '...' <p> element when active        
         document.getElementById('sidebar-dots').classList.add('hide');
-        //show links <ul> elements when inactive
-        document.getElementById('sidebar-links').classList.remove('hide');
       }
     }
   } 
@@ -66,14 +67,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if(sidebarActive===true || event.target.id ==='sidebar-exit') {
       return;
     } else {  
-      //if sidebar is inactive, deactivate  
+      //if sidebar is inactive, activate  
       sidebar.className ='sidebar-active';
-      //reenable 'close' <p> element on opening sidebar
-      sidebarClose.classList.remove('hide');
       //hide '...' <p> element on opening sidebar
-      document.getElementById('sidebar-dots').classList.add('hide');
-      //show links <ul> elements when inactive
-      document.getElementById('sidebar-links').classList.remove('hide');
+      document.getElementById('sidebar-dots').classList.add('hide');      
+      //show elements when active   
+      for(i=0;i<itemsToHide.length;i++){
+        itemsToHide[i].classList.remove('hide');
+      }
       //reassign statuses to true
       clickActive = true;
       sidebarActive=true;
@@ -83,13 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
   //function to close sidebar
   function closeSidebar() {
     //if sidebar is active, add inactive class to deactivate.    
-    sidebar.className='sidebar-inactive';
-    //add 'hide' class to 'close' <p> element on closing
-    sidebarClose.classList.add('hide');
+    sidebar.className='sidebar-inactive';    
     //show '...' <p> element on closing
     document.getElementById('sidebar-dots').classList.remove('hide');
-    //hide links <ul> elements when inactive
-    document.getElementById('sidebar-links').classList.add('hide');
+    //hide elements when inactive    
+    for(i=0;i<itemsToHide.length;i++){
+      itemsToHide[i].classList.add('hide');
+    }
     //reassign statuses to false
     clickActive=false;
     sidebarActive=false;   
