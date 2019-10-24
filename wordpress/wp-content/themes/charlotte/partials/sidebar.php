@@ -3,7 +3,8 @@
 if( !defined( 'ABSPATH' ) ) { exit; }
 
 $toggle_sidebar= get_field('show_sidebar');
-$sidebar = get_field('sidebar_links');
+$tags = get_field('tag_category');
+$all_social_media=get_field('social_media');
 
 if($toggle_sidebar){
 ?>    
@@ -14,31 +15,24 @@ if($toggle_sidebar){
     <ul id='sidebar-links' class='js-hide-on-active'>
         <li id='latest-posts' ><a class='sidebar-link'>Latest Posts</a></li>
         <li id='archived-posts'><a  class='sidebar-link'>Archived Posts</a></li>
-        <li id='posts-by-category' class='sidebar-list'>Posts By Category
+        <li id='posts-by-category' class='sidebar-list'><span id='span-hover'>Posts By Category</span>
             <ul id='category-links'>
-
 <?php 
-
-            foreach($sidebar as $s) {
-                $category = $s['category'];                
-                
+            foreach($tags as $tag) {                
+                $category = $tag['category']; 
                 echo "<li class='sidebar-link'><a>$category </a></li>";    
             }
 ?>
-
-                <li class='sidebar-link'><a>category</a></li>
-                <li class='sidebar-link'><a>category</a></li>
-                <li class='sidebar-link'><a>category</a></li>
-            </ul>
-        </li>
+            </ul> 
+        </li>       
     </ul>
     <div id='sidebar-footer' class='js-hide-on-active'>
 
     <?php
-    foreach($sidebar as $s) {
-        $social_media_icon = $s['social_media']['social_media_icon']['url'];
-        $social_media_alt_text = $s['social_media']['social_media_alt_text'];
-        $social_media_link = $s['social_media']['social_media_link'];
+    foreach($all_social_media as $social_media) {        
+        $social_media_icon = $social_media['social_media_icon']['url'];
+        $social_media_alt_text = $social_media['social_media_alt_text'];
+        $social_media_link = $social_media['social_media_link'];
         echo "<a class='sidebar-footer-link' href='$social_media_link' target='_blank'>
             <img src='$social_media_icon' alt='$social_media_alt_text'></a>";
     }

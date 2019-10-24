@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function handleSidebar() {
     const sidebar = document.getElementById("sidebar");
     if(clickActive===false) {
-      if (document.body.scrollTop > 50 && window.innerWidth >=700 || document.documentElement.scrollTop > 50 && window.innerWidth >=700) {      
+      if (document.body.scrollTop > 50 && window.innerWidth >=799 || document.documentElement.scrollTop > 50 && window.innerWidth >=799) {      
         //change sidebar class to inactive 
         sidebar.className='sidebar-inactive';
         //hide elements when inactive        
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const list = document.getElementById('category-links');
     
     if(listActive===false){
-    list.style.display = 'block';
+    list.style.display = 'flex';
     listActive = true;
     } else if(listActive ===true) {      
       list.style.display = 'none';
