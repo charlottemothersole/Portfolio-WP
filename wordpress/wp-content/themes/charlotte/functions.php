@@ -33,13 +33,14 @@ function wpdocs_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
 
-/*function register_my_menus() {
+/*to add menus*/
+function register_my_menus() {
     register_nav_menus(
       array(
-        'header-menu' => __( 'Header Menu' ),
-        'extra-menu' => __( 'Extra Menu' )
+        'header-menu' => __( 'Nav Menu' ),
+        'extra-menu' => __( 'Extra Menu' ),
        )
      );
    }
    add_action( 'init', 'register_my_menus' );
-   */
+   

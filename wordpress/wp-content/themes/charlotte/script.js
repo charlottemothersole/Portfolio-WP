@@ -1,5 +1,52 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  //NAVIGATION
+  //defining variables
+  let hoveredItems = document.querySelectorAll('.menu-item');
+  
+  //function to show sub-menu element on hover
+  function identifyElement(e) {
+    //identify hovered element id
+    let testItem = e.target.id;
+    //save hovered element
+    let testItemId = document.getElementById(testItem);
+    //search for closest sub-menu element
+    let testClosest = testItemId.querySelector('.sub-menu');
+    //if closest sub-menu is inactive, activate
+    if(testClosest.classList != 'sub-menu-active') {
+      testClosest.classList.remove('sub-menu');
+      testClosest.classList.add('sub-menu-active');
+    } 
+  }
+
+  //function to remove sub-menu element on hover
+  function closeSubMenu(e) {
+    //identify hovered element id
+    let testItem = e.target.id;
+    //save hovered element
+    let testItemId = document.getElementById(testItem);
+    //search for closest sub-menu element
+    let testClosest = testItemId.querySelector('.sub-menu-active');
+    //if closest sub-menu is active, remove
+    if(testClosest.classList == 'sub-menu-active') {      
+      testClosest.classList.add('sub-menu');
+      testClosest.classList.remove('sub-menu-active');
+    }
+}
+
+  //Event listener for hover on nav items
+  for (i=0;i<hoveredItems.length;i++) {
+  hoveredItems[i].addEventListener('mouseenter',identifyElement);  
+  }
+  
+  //Event listener for end-hover on nav items
+  for (i=0;i<hoveredItems.length;i++) {
+  hoveredItems[i].addEventListener('mouseleave',closeSubMenu);
+  }
+
+  
+
+
   //CONTACT TAB
   //trigger fixed contact tab on scrolling
   window.onscroll = function() {handleContactTab()};
@@ -13,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  //SIDEBAR 
+  //SIDEBAR   
   
   //defining sidebar tab clicked status
   let clickActive = false;

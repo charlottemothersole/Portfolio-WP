@@ -61,24 +61,9 @@ if( !defined( 'ABSPATH' ) ) { exit; }
             </div>
         </div>    
     </div>
+    
     <div id='sidebar-container'>
-        <div id='sidebar' class='sidebar-active'>
-            <p id='sidebar-exit'>Close</p>
-            <p id='sidebar-dots' class='hide'>...</p>
-            <ul id='sidebar-links'>
-                <a class='sidebar-link'><li>Latest Posts</li></a>
-                <a class='sidebar-link'><li>Archived Posts</li></a>
-                <li class='sidebar-list'>Posts By Category
-                    <ul id='category-links'>
-                        <a><li class='sidebar-link'>category</li></a>
-                        <a><li class='sidebar-link'>category</li></a>
-                        <a><li class='sidebar-link'>category</li></a>
-                    </ul>
-                </li>
-            </ul>
-            <div id='sidebar-footer'>
-            </div>
-        </div>
+    <?php get_template_part('partials/sidebar'); ?>
     </div>
 </section>
 

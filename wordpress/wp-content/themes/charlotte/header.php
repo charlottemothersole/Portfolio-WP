@@ -12,27 +12,17 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     </head>
     <body>
-        <header>
+        <header>            
             <nav id='navbar'>
                 <span style='color:white;' class='navbar-toggle' id='navbar-toggle'>
                     <i class='fas fa-bars'></i>
                 </span>
-                <ul id='nav-list' class='nav-list inactive'>
-                    <?php /*$navigation = get_field('navigation');
-                    
-                    foreach($navigation as $nav) {
-                        $nav_item = $nav['navigation_item'];
-                        $nav_link = $nav['navigation_link'];
-                    ?>    
-                    <li class='nav'><a class='nav-item' href='<?php echo $nav_link ?>'><?php echo $nav_item ?> </a> </li>
-                    <?php
-                    }
-                     */?>
-                    <li class='nav'><a class='nav-item' href='#welcome-section'>About</a></li>
-                    <li class='nav'><a class='nav-item' href='./work.html'>Work</a></li>
-                    <li class='nav' ><a class='nav-item' href='#contact'>Contact</a></li>
-                    <li class='nav' ><a class='nav-item' href='#certifications'>Certifications</a></li>
-                    
+                    <!-- to display nav menu -->
+                    <?php wp_nav_menu( array( 
+                        'theme_location' => 'header-menu', 
+                        'menu_class'     => 'nav-menu',
+                        ) );
+                    ?> 
                 </ul>
                 
             </nav>            

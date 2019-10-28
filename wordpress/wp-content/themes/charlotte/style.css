@@ -33,11 +33,8 @@ html, body {
     z-index:99;
 }
 
-#navbar-toggle {
-    display:none;
-}
-
-.nav-list {
+/* <ul>*/
+.nav-menu {
     width:100vw;    
     align-items: center;
     justify-content: center;    
@@ -49,7 +46,8 @@ html, body {
     padding:0;
 }
 
-.nav-item {
+/*<a>*/
+.nav-menu li a {
     text-decoration:none;
     border-right:2px solid white;
     padding: 0 10px;
@@ -57,8 +55,40 @@ html, body {
     background-color:#262626;  
 }
 
-.nav:hover {
+
+/*<li>*/
+.menu-item-object-page:hover {
     transform:scale(1.1);
+}
+
+/*sub <ul>*/
+.sub-menu {
+    display:none;
+}
+
+.sub-menu-active {
+    /*align-items: center;*/
+    justify-content: center;    
+    z-index:10;
+    list-style: none;
+    display:flex;
+    flex-direction:column;
+    position:absolute;
+    padding:0 0 0 10px;
+    border:none;
+    background-color: var(--dark-grey-translucent);
+    padding:10px; 
+}
+
+.sub-menu-active li {
+    padding:10px 0;
+    background-color: unset;
+}
+
+.nav-menu .sub-menu-active a {
+    border:none;
+    background-color: unset;
+    
 }
 
 #welcome-section {
@@ -702,7 +732,7 @@ footer {
 @media only screen and (min-width:800px){
     #posts-container {
         align-items: flex-start;
-        padding-left:10px;
+        padding-left:5%;
     }
 }
 @media only screen and (max-width:799px) {
@@ -724,6 +754,10 @@ footer {
     /*.sidebar-active {
         width:150px;
     }*/
+
+    #posts-container {
+        width:100vw;
+    }
 
     .post-header {
         overflow-wrap:unset;
@@ -829,6 +863,7 @@ footer {
 }
 
 @media only screen and (max-width:700px) {
+    /*possibly single.php??*/
     #s1_blurb {
         width:85vw;
     }

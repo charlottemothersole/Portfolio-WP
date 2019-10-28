@@ -7,7 +7,11 @@
             <p id='footer-text'><img id='copyright' src='<?php /*function to access pathway*/ echo get_template_directory_uri() ?>/copyright.png'/>Made by Charlotte</p>         
         </footer>
         <?php
-            wp_footer();
+            wp_footer();            
         ?>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
     </body>
 </html>
