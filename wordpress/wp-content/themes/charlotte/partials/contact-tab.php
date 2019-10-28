@@ -2,10 +2,11 @@
 
 if( !defined( 'ABSPATH' ) ) { exit; }
 
-$side_tab= get_field('side_tab');
-$url = $side_tab['url'];
-$toggle = $side_tab['side_toggle'];
-$text = $side_tab['side_text'];
+$side_tab= get_field('side_tab','options');
+$toggle = get_field('side_toggle');
+$url = $side_tab['tab_link'];
+$text = $side_tab['tab_text'];
+print_r($side_tab);
 
 if($toggle){
 ?>    

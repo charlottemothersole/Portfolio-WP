@@ -4,7 +4,7 @@ if( !defined( 'ABSPATH' ) ) { exit; }
 
 $toggle_sidebar= get_field('show_sidebar');
 $tags = get_field('tag_category');
-$all_social_media=get_field('social_media');
+$all_social_media=get_field('social_media', 'options');
 
 if($toggle_sidebar){
 ?>    
@@ -30,8 +30,8 @@ if($toggle_sidebar){
 
     <?php
     foreach($all_social_media as $social_media) {        
-        $social_media_icon = $social_media['social_media_icon']['url'];
-        $social_media_alt_text = $social_media['social_media_alt_text'];
+        $social_media_icon = $social_media['social_media_logo']['url'];
+        $social_media_alt_text = $social_media['social_media_logo']['alt'];
         $social_media_link = $social_media['social_media_link'];
         echo "<a class='sidebar-footer-link' href='$social_media_link' target='_blank'>
             <img src='$social_media_icon' alt='$social_media_alt_text'></a>";

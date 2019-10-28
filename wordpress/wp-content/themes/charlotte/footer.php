@@ -1,8 +1,8 @@
 <footer id='certifications'>
             <ul id='link-list'>
                 <?php 
-                $certifications = get_field('certifications');
-                $social_media = get_field('social_media');
+                $certifications = get_field('certifications','options');
+                $social_media = get_field('social_media','options');
                 foreach($certifications as $certification) {
                     $cert_url = $certification['certifications_link'];
                     $cert_name = $certification['certifications_name'];
@@ -17,7 +17,7 @@
                     foreach($social_media as $social) {
                         $social_url = $social['social_media_link'];
                         $social_logo = $social['social_media_logo']['url'];
-                        $social_alt = $social['social_media_alt_text'];
+                        $social_alt = $social['social_media_logo']['alt'];
                         echo "<a href='$social_url' target='_blank'><img src='$social_logo' alt='$social_alt'></a>";
                     }
                     ?>
