@@ -12,7 +12,6 @@ if( !defined( 'ABSPATH' ) ) { exit; }
 
     //defining variables
     $all_posts = get_posts();
-    
 ?>
 
 <section id='posts'>    

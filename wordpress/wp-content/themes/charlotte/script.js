@@ -71,99 +71,114 @@ document.addEventListener('DOMContentLoaded', function () {
   const sidebarClose = document.getElementById('sidebar-exit');
   const itemsToHide = document.querySelectorAll('.js-hide-on-active');
 
-  //function to auto hide sidebar on scroll unless tab was clicked
-  window.onscroll = function() {handleSidebar()};
+  if(sidebar) {
 
-  function handleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    if(clickActive===false) {
-      if (document.body.scrollTop > 50 && window.innerWidth >=799 || document.documentElement.scrollTop > 50 && window.innerWidth >=799) {      
-        //change sidebar class to inactive 
-        sidebar.className='sidebar-inactive';
-        //hide elements when inactive        
-        for(i=0;i<itemsToHide.length;i++) {
-          itemsToHide[i].classList.add('hide');
+    //function to auto hide sidebar on scroll unless tab was clicked
+    window.onscroll = function() {handleSidebar()};
+
+    function handleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      if(clickActive===false) {
+        if (document.body.scrollTop > 50 && window.innerWidth >=799 || document.documentElement.scrollTop > 50 && window.innerWidth >=799) {      
+          //change sidebar class to inactive 
+          sidebar.className='sidebar-inactive';
+          //hide elements when inactive        
+          for(i=0;i<itemsToHide.length;i++) {
+            itemsToHide[i].classList.add('hide');
+          }
+          //show 'dots' <p> element when inactive
+          document.getElementById('sidebar-dots').classList.remove('hide');
+          //reassign variable*/
+          sidebarActive=false;
+          //if sidebar inactive change to active
+        } else if(sidebar.className ==='sidebar-inactive' && clickClose ===false){
+          sidebar.className='sidebar-active'; 
+          //show elements when active
+          for(i=0;i<itemsToHide.length;i++) {
+            itemsToHide[i].classList.remove('hide');
+          } 
+          //hide '...' <p> element when active        
+          document.getElementById('sidebar-dots').classList.add('hide');
         }
-        //show 'dots' <p> element when inactive
-        document.getElementById('sidebar-dots').classList.remove('hide');
-        //reassign variable*/
-        sidebarActive=false;
-        //if sidebar inactive change to active
-      } else if(sidebar.className ==='sidebar-inactive' && clickClose ===false){
-        sidebar.className='sidebar-active'; 
-        //show elements when active
-        for(i=0;i<itemsToHide.length;i++) {
+      }
+    } 
+
+    //listen for click event on sidebar tab and call triggerSidebar function to open it    
+    sidebar.addEventListener('click',triggerSidebar);      
+        
+    //listen for click event on 'close' <p> element and call closeSidebar function to close it         
+    sidebarClose.addEventListener('click',closeSidebar);
+            
+
+    //toggle sidebar function
+    function triggerSidebar(event) {
+      //if sidebar already open or if the click event was on 'close' <p> element don't trigger
+      if(sidebarActive===true || event.target.id ==='sidebar-exit') {
+        return;
+      } else {  
+        //if sidebar is inactive, activate  
+        sidebar.className ='sidebar-active';
+        //hide '...' <p> element on opening sidebar
+        document.getElementById('sidebar-dots').classList.add('hide');      
+        //show elements when active   
+        for(i=0;i<itemsToHide.length;i++){
           itemsToHide[i].classList.remove('hide');
-        } 
-        //hide '...' <p> element when active        
-        document.getElementById('sidebar-dots').classList.add('hide');
+        }
+        //reassign statuses to true
+        clickActive = true;
+        sidebarActive=true;
       }
     }
-  } 
 
-  //listen for click event on sidebar tab and call triggerSidebar function to open it    
-  sidebar.addEventListener('click',triggerSidebar);      
-      
-  //listen for click event on 'close' <p> element and call closeSidebar function to close it         
-  sidebarClose.addEventListener('click',closeSidebar);
-          
-
-  //toggle sidebar function
-  function triggerSidebar(event) {
-    //if sidebar already open or if the click event was on 'close' <p> element don't trigger
-    if(sidebarActive===true || event.target.id ==='sidebar-exit') {
-      return;
-    } else {  
-      //if sidebar is inactive, activate  
-      sidebar.className ='sidebar-active';
-      //hide '...' <p> element on opening sidebar
-      document.getElementById('sidebar-dots').classList.add('hide');      
-      //show elements when active   
+    //function to close sidebar
+    function closeSidebar() {
+      //if sidebar is active, add inactive class to deactivate.    
+      sidebar.className='sidebar-inactive';    
+      //show '...' <p> element on closing
+      document.getElementById('sidebar-dots').classList.remove('hide');
+      //hide elements when inactive    
       for(i=0;i<itemsToHide.length;i++){
-        itemsToHide[i].classList.remove('hide');
+        itemsToHide[i].classList.add('hide');
       }
-      //reassign statuses to true
-      clickActive = true;
-      sidebarActive=true;
-    }
-  }
+      //reassign statuses to false
+      clickActive=false;
+      sidebarActive=false;   
+      //reassign status to true
+      clickClose=true; 
+    }      
 
-  //function to close sidebar
-  function closeSidebar() {
-    //if sidebar is active, add inactive class to deactivate.    
-    sidebar.className='sidebar-inactive';    
-    //show '...' <p> element on closing
-    document.getElementById('sidebar-dots').classList.remove('hide');
-    //hide elements when inactive    
-    for(i=0;i<itemsToHide.length;i++){
-      itemsToHide[i].classList.add('hide');
-    }
-    //reassign statuses to false
-    clickActive=false;
-    sidebarActive=false;   
-    //reassign status to true
-    clickClose=true; 
-  }      
-
-  //toggle 'Posts By Category' sidebar link to expand/shrink
-  let listActive = false;
-  const category = document.querySelector('.sidebar-list');
-  
-  category.addEventListener('click', toggleList);
-
-  function toggleList() { 
-     
-    const list = document.getElementById('category-links');
+    //toggle 'Posts By Category' sidebar link to expand/shrink
+    let listActive = false;
+    const category = document.querySelector('.sidebar-list');
     
-    if(listActive===false){
-    list.style.display = 'flex';
-    listActive = true;
-    } else if(listActive ===true) {      
-      list.style.display = 'none';
-      listActive = false;
+    category.addEventListener('click', toggleList);
+
+    function toggleList() { 
+      
+      const list = document.getElementById('category-links');
+      
+      if(listActive===false){
+      list.style.display = 'flex';
+      listActive = true;
+      } else if(listActive ===true) {      
+        list.style.display = 'none';
+        listActive = false;
+      }
     }
   }
 
+  let archiveElements = document.querySelectorAll('.archive-dates');  
+  if(archiveElements) {
+    archiveElements.forEach(element => element.addEventListener('mouseenter',archiveActive));
+
+    function archiveActive() {
+      for(i=0;i<archiveElements.length;i++) {
+        archiveElements[i].style.flex = '1';
+      } 
+      this.style.flex = '2';
+    }
+  }
+  
 
 
 

@@ -67,17 +67,19 @@ html, body {
 }
 
 .sub-menu-active {
-    /*align-items: center;*/
-    justify-content: center;    
+    width:200px;
+    align-items: flex-start;
+    justify-content: flex-start;
     z-index:10;
     list-style: none;
     display:flex;
     flex-direction:column;
     position:absolute;
+    left:-10px;
     padding:0 0 0 10px;
     border:none;
     background-color: var(--dark-grey-translucent);
-    padding:10px; 
+    
 }
 
 .sub-menu-active li {
@@ -290,7 +292,7 @@ html, body {
     background-color: var(--light-grey-solid);
     color:var(--burgundy-solid);
     position:fixed;
-    box-shadow: -2px 3px 6px var(--dark-grey-translucent);
+    box-shadow: -2px 3px 6px white;
     border-radius: 5px 0 0 5px;
     height:65vh;
     max-height:600px;
@@ -323,6 +325,7 @@ html, body {
 #posts-by-category {
     background-image: url(./tag50px.png);
     margin-bottom:0;
+    background-position: left top;
     
 }
 
@@ -354,7 +357,7 @@ html, body {
     list-style-image: url(./hashtag.png);
     font-weight:400;
     font-style:italic;
-    padding-left:120px;
+    flex-direction:column;
 }
 
 
@@ -510,6 +513,91 @@ html, body {
     justify-content: space-between;
     font-weight:bold;
     width:100%;
+}
+
+#archive, #tag {
+    height:80vh;
+    padding-top:15vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    background-color: var(--light-grey-solid);
+}
+
+#archive-heading, #tag-heading {
+    color:var(--burgundy-solid);
+    font-size: 2em;
+    margin: auto;
+}
+
+#archive-photo, #tag-photo {
+    height:70%;
+    width:70%;
+    background-image: url(./fern.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: auto;
+}
+
+#archive-overlay, #tag-overlay {
+    background-color: var(--dark-grey-translucent);
+    height:100%;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.archive-dates {
+    display:flex;
+    flex:1;
+    align-items: center;
+    padding-left:20px;
+    border:1px dotted white;
+}
+
+.archive-year, .archive-month, .single-tag {
+    margin:0;
+    color:white;
+    font-size:1.5em;
+}
+
+.archive-year {
+    margin-right:30px;
+    font-weight:bold;
+}
+
+.archive-months {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.archive-month{
+    padding:10px;
+}
+
+.archive-month:hover, .single-tag:hover {
+    transform:scale(1.1);
+}
+
+.archive-link, .tag-link {
+    cursor: pointer;
+}
+
+.tags-list {
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding:50px 20px;
+}
+
+.single-tag {
+    margin:100px 0;
 }
 
 #contact {
@@ -847,6 +935,11 @@ footer {
         height: 70px;
         margin:0 20px;
         padding:0 0 0 60px;
+    }
+    
+    #posts-by-category {
+        background-position: left center;
+        
     }
 
     #category-links {        
