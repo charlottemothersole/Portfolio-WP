@@ -11,91 +11,57 @@ if( !defined( 'ABSPATH' ) ) { exit; }
     get_header();
 
     //defining variables
-    //database query 
-    $query = "SELECT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, count(ID) as posts ";
-    $query.= "FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' ";
-    $query.= "GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date DESC";
-    //results of query
-    $results = $wpdb->get_results( $query ); // query returns results in format: [{ year, month, count }, { year, month, count }...]
+    $search_year = $wp_query->query['year'];
+    $search_month = $wp_query->query['monthnum'];
 
-    // get unique years
-    //create empty array for all the years captured from query
-    $post_years =[];
-    //iterate over each result one object at a time
-    foreach ($results as $item) {
-        //identify any years in current object and push to empty array
-        $post_years[]=$item->year;
-    }
-    //retain only unique years in array
-    $unique_years =array_unique($post_years);
+    $args = array(
+    'post_status' =>'publish',
+    'monthnum' =>$search_month,
+    'year' =>$search_year
+    );
+   
+    $all_posts = get_posts($args);
 
-    //for each year, get months for the year
-    //create empty array for ALL years and months per year
-    $post_years_months = []; // [key] = months[], where key = year
-    //iterate over years one at time
-    foreach ($unique_years as $year) {
-        //create empty array for CURRENT year's months
-        $months = [];
-        
-        // iterate over each query result one at time
-        foreach ($results as $result) {
-            //if result year matches our current year...
-            if ($result->year == $year) {
-                //then push result(inc year, month and post count)to empty array
-                $months[] = $result;                
-            }
-        }
+    ?>
 
-        // push current year and all associated months to empty array
-        $post_years_months[$year] = $months;
-    }
-
-    
-    
-
-    $month_as_string = [
-        1   =>  'January',
-        2   =>  'February',
-        3   =>  'March',
-        4   =>  'April',
-        5   =>  'May',
-        6   =>  'June',
-        7   =>  'July',
-        8   =>  'August',
-        9   =>  'September',
-        10  =>  'October',
-        11  =>  'November',
-        12  =>  'December'
-    ];
-?>
-
-<section id='archive'>
-    <h1 id='archive-heading'>Older Posts</h1>
-    <div id='archive-photo'>
-        <div id='archive-overlay'>
-            <?php foreach($unique_years as $year) {
-                echo "<div class='archive-dates'>";
-                echo "<p class='archive-year'>$year</p>";
-                echo "<div class='archive-months'>";
-                
-                $months = $post_years_months[$year];
-                foreach($months as $month) {                    
-                    $month_number = $month->month;
-                    $month_name = $month_as_string[$month_number];
-                    $month_link = get_month_link($year, $month->month);
-                    $month_post_count = $month->posts;
-                    echo "<a class='archive-link' target='_blank' href='$month_link'><p class='archive-month'>$month_name($month_post_count)</p></a>";
+<section id='posts'>    
+    <div id='posts-container'>
+        <?php foreach($all_posts as $single_post) {
+            $all_tags = get_the_tags($single_post); 
+             
+        ?>
+            <a class='post-link' href='<?php echo get_permalink($single_post); ?>'>
+                <div class='post-preview'>
+                    <h1 class='post-header'> <?php echo get_the_title($single_post); ?> </h1>
+                    <div class='tag-list'>
+            <?php 
+             if($all_tags) {
+                foreach($all_tags as $tag) {
+                    $tag_name= $tag->name;
+                    echo "<div class='tag-item'>$tag_name</div>";
                 }
-                
-                echo "</div>";
-                echo "</div>";
-            }
-            ?>
-        </div>
+             }
+            ?> 
+                    </div>
+                    <div class='post-content module'> 
+                        <div id='thumbnail-container'> <?php  echo get_the_post_thumbnail($single_post); ?> </div> 
+                        <p id='excerpt'><?php echo get_the_excerpt($single_post); ?></p>
+                    </div> 
+                    
+                </div>        
+            </a> 
+            
+        <?php
+        }
+        ?>
+    </div>
+    <div id='sidebar-container'>
+    <?php get_template_part('partials/sidebar'); ?>
     </div>
 </section>
 
 <?php 
+
 /* to access footer.php*/
 get_footer();
 ?>
