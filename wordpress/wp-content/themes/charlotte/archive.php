@@ -11,47 +11,47 @@ if( !defined( 'ABSPATH' ) ) { exit; }
     get_header();
 
     //defining variables
-
-    $args = array(
-        'type'            => 'monthly',
-        'limit'           => '', 
-        'format'          => 'html', 
-        'before'          => '<p class="archive-year">',
-        'after'           => '</p>',
-        'show_post_count' => true,
-        'echo'            => 0,
-        'order'           => 'DESC',
-        'post_type'     => 'post'
-    );
-
-    $all_years = wp_get_archives($args, 0);
+    //database query 
     $query = "SELECT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, count(ID) as posts ";
     $query.= "FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' ";
     $query.= "GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date DESC";
+    //results of query
     $results = $wpdb->get_results( $query ); // query returns results in format: [{ year, month, count }, { year, month, count }...]
 
     // get unique years
+    //create empty array for all the years captured from query
     $post_years =[];
+    //iterate over each result one object at a time
     foreach ($results as $item) {
+        //identify any years in current object and push to empty array
         $post_years[]=$item->year;
     }
+    //retain only unique years in array
     $unique_years =array_unique($post_years);
 
     //for each year, get months for the year
+    //create empty array for ALL years and months per year
     $post_years_months = []; // [key] = months[], where key = year
+    //iterate over years one at time
     foreach ($unique_years as $year) {
+        //create empty array for CURRENT year's months
         $months = [];
-        $posts = '';
-        // filter results(months) by the year (comparing $results database query to our $unique_years)
+        
+        // iterate over each query result one at time
         foreach ($results as $result) {
+            //if result year matches our current year...
             if ($result->year == $year) {
-                $months[] = $result->month;
-                
+                //then push result(inc year, month and post count)to empty array
+                $months[] = $result;                
             }
         }
 
+        // push current year and all associated months to empty array
         $post_years_months[$year] = $months;
     }
+
+    
+    
 
     $month_as_string = [
         1   =>  'January',
@@ -67,91 +67,30 @@ if( !defined( 'ABSPATH' ) ) { exit; }
         11  =>  'November',
         12  =>  'December'
     ];
-
-    $posts_per_month = '';
-    foreach($unique_years as $year) {
-        $posts = '';
-        foreach($results as $item) {
-            if($item->year == $year){
-                $posts= $item->posts;
-            }
-        }
-        
-    }
-
-    print_r($posts_per_month);
-    
-
-    // foreach ($all_posts as $single_post) {
-    //     $post_year = get_the_date('Y', $single_post);        
-    //     array_push($post_years,$post_year);
-        
-    //     $post_month_year = get_the_date('Y M', $single_post);
-    //     array_push($posts_months_years,$post_month_year);
-    // }
-    
-    
-    
-    // $unique_posts_months_years = array_unique($posts_months_years);
-    
 ?>
 
 <section id='archive'>
     <h1 id='archive-heading'>Older Posts</h1>
     <div id='archive-photo'>
         <div id='archive-overlay'>
-            <?php 
-                echo $all_years;
-            ?>
-            
             <?php foreach($unique_years as $year) {
                 echo "<div class='archive-dates'>";
                 echo "<p class='archive-year'>$year</p>";
                 echo "<div class='archive-months'>";
                 
                 $months = $post_years_months[$year];
-                foreach($months as $month) {
-                    $posts ='';
-                    $month_name = $month_as_string[$month];
-                    $month_link = get_month_link($year, $month);
-                    echo "<a class='archive-link' target='_blank' href='$month_link'><p class='archive-month'>$month_name</p></a>";
-
-                    
+                foreach($months as $month) {                    
+                    $month_number = $month->month;
+                    $month_name = $month_as_string[$month_number];
+                    $month_link = get_month_link($year, $month->month);
+                    $month_post_count = $month->posts;
+                    echo "<a class='archive-link' target='_blank' href='$month_link'><p class='archive-month'>$month_name($month_post_count)</p></a>";
                 }
                 
                 echo "</div>";
                 echo "</div>";
             }
             ?>
-                <!-- <div class='archive-months'> -->
-                    
-                <!-- <p class='archive-year'>2019</p>
-                <div class='archive-months'>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>February</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>March</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>April</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>May</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>June</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>July</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>August</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>September</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>October</p></a> -->
-                <!-- </div>
-            </div> -->
-            <!-- <div class='archive-dates'>
-                <p class='archive-year'>2019</p>
-                <div class='archive-months'>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>February</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>March</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>April</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>May</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>June</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>July</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>August</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>September</p></a>
-                    <a class='archive-link' target='_blank'><p class='archive-month'>October</p></a>
-                </div>
-            </div> -->
         </div>
     </div>
 </section>

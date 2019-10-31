@@ -584,6 +584,7 @@ html, body {
 
 .archive-link, .tag-link {
     cursor: pointer;
+    text-decoration: none;
 }
 
 .tags-list {
