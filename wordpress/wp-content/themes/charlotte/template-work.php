@@ -54,22 +54,13 @@ if( !defined( 'ABSPATH' ) ) { exit; }
     
 </svg>  
 <div id='contact-container'></div>
-    <a class='contact-link' target='_blank' href='https://github.com/mcuriousity?tab=repositories'>
+    <a class='contact-link' target='_blank' href='https://github.com/charlottemothersole?tab=repositories'>
         <figure class='contact-tile'>
             <img class='icon' src='<?php echo get_template_directory_uri() ?>./github.png'/>
             <figcaption>View On Github</figcaption>
         </figure>
     </a>
 </div>
-
-<svg id='box' height="400" width="500" preserveAspectRatio='none'>
-    <svg x='200' y='100' height='100'>
-        <circle cx='100' cy='100' r='75' fill='#FFFDD0'>
-    </svg>
-    <svg x='200' y='200'>
-        <circle cx='100' cy='0' r='75' fill='rgba(77,0,17,1)'>
-    </svg>
-</svg> 
              
 <?php 
 /* to access footer.php*/

@@ -22,7 +22,7 @@ if( !defined( 'ABSPATH' ) ) { exit; }
                 foreach($all_tags as $tag) {
                     $tag_name = $tag->name;
                     $tag_url = get_tag_link($tag);
-                    echo "<a class='tag-link' target='_blank' href='$tag_url'><p class='single-tag'>$tag_name</p></a>";
+                    echo "<a class='tag-link' target='_blank' href='$tag_url'><p class='single-tag'>#$tag_name</p></a>";
                 }
                 ?>
             </div>

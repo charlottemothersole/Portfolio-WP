@@ -14,6 +14,9 @@
     <body>
         <header>            
             <nav id='navbar'>
+                <div id='logo'>
+                    <img width='400px' src='<?php echo get_template_directory_uri() ?>./logo-small.png' alt='Site logo of heart enclosed inside html close tag'/>
+                </div>
                 <span style='color:white;' class='navbar-toggle' id='navbar-toggle'>
                     <i class='fas fa-bars'></i>
                 </span>

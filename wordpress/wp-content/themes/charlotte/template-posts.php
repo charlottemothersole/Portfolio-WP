@@ -39,11 +39,11 @@ if( !defined( 'ABSPATH' ) ) { exit; }
                     
                 </div>        
             </a> 
-            
         <?php
         }
-        ?>
+        ?>        
     </div>
+    
     <div id='sidebar-container'>
     <?php get_template_part('partials/sidebar'); ?>
     </div>
