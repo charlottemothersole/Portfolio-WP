@@ -20,7 +20,8 @@ if( !defined( 'ABSPATH' ) ) { exit; }
         $tagline = get_field('tagline'); 
     ?>  
     <h2 id='project-tagline'><?php echo $tagline ?> </h2>
-    <?php the_post(); the_content(); ?>              
+    <?php the_post(); the_content(); ?>    
+    
 </div>
   
 <svg id='project-svg-top' xmlns="http://www.w3.org/2000/svg" viewbox='0 0 100 100' height='100px' width='100%' preserveAspectRatio='none'>
@@ -28,25 +29,29 @@ if( !defined( 'ABSPATH' ) ) { exit; }
     </polygon>                          
 </svg>
 <div id='projects-container'>
-<?php 
-    $projects = get_field('projects'); 
-    
-    foreach($projects as $project) { 
-        $img = $project['image'];
-        $link = $project['link'];
-        $description = $project['description'];
-        $target = $link['target'];
-        $alt_text = $project['alt_text'];
-?>
-    <figure class='project-tile'>
-        <a class='projects-link' href='<?php echo $link['url'] ?>' target='<?php echo $target ?>'>
-            <img src='<?php echo $img['url'] ?>' class='project-img' alt='<?php echo $alt_text ?>'>
-            <figcaption class='figcaption'><?php echo $description ?></figcaption>
-        </a>
-    </figure>
-    <?php
-    }
-    ?>
+    <div class='flexslider-container'>
+        <div class="flexslider">
+            <ul class="slides">
+                <?php
+                $projects = get_field('projects'); 
+                foreach($projects as $project) {
+                    $img_url = $project['image']['url'];
+                    $description = $project['description'];
+                    $target = $project['link']['target'];
+                    $link = $project['link']['url'];
+                    $alt_text = $project['alt_text'];
+                    
+                    echo "
+                    <li>
+                        <a class='flexslider-link' href='$link' target='$target'><img src='$img_url' alt='$alt_text'/>
+                        <p class='flexslider-desc'>$description</p>                     
+                        </a>
+                    </li>";
+                 }                
+                ?>
+            </ul>
+        </div>   
+    </div>       
 </div>  
 <svg id='project-svg-bottom' xmlns="http://www.w3.org/2000/svg" viewbox='0 0 100 100' height='100px' width='100%' preserveAspectRatio='none'>
     <polygon id='polygon' points='0,0 100,0 0,100' fill='rgba(77,0,17,1)'>

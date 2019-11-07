@@ -4,13 +4,17 @@ add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 
 function my_theme_enqueue_styles() { 
     wp_enqueue_style( 'charlotte', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/flexslider.css' );
 }
 
 /*add javascript*/
 add_action('wp_enqueue_scripts', 'cm_scripts');
 
 function cm_scripts() {
-wp_enqueue_script('script',get_template_directory_uri(). '/script.js',);
+  wp_enqueue_script('jquery');
+  wp_enqueue_script('flexsliderjs',get_template_directory_uri(). '/jquery.flexslider.js');
+  wp_enqueue_script('script',get_template_directory_uri(). '/script.js');
+
 }
 
 //setting featured image function for posts
