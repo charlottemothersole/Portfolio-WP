@@ -18,8 +18,8 @@ if( !defined( 'ABSPATH' ) ) { exit; }
             $home_heading = get_field('home-heading');
             $home_tagline = get_field('home-tagline');
             ?>
-        <h1><?php echo $home_heading ?> </h1>
-        <h2><?php echo $home_tagline ?> </h2>        
+        <h1 class='hidden-home'><?php echo $home_heading ?> </h1>
+        <h2 class='hidden-home'><?php echo $home_tagline ?> </h2>        
         </div>
     </section>
     <section id='contact'>

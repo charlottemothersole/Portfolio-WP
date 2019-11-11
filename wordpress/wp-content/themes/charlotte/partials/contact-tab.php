@@ -6,7 +6,6 @@ $side_tab= get_field('side_tab','options');
 $toggle = get_field('side_toggle');
 $url = $side_tab['tab_link'];
 $text = $side_tab['tab_text'];
-print_r($side_tab);
 
 if($toggle){
 ?>    

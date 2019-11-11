@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //function to add active class to tab on scroll
   function handleContactTab() {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    if (document.body.scrollTop > 50 && window.innerWidth >=550 || document.documentElement.scrollTop > 50 && window.innerWidth >= 550) {
       document.getElementById("contact-tab").className = "contact_tab_active";
     } else {
       document.getElementById("contact-tab").className = "contact-tab";
@@ -179,10 +179,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
   
-  // Can also be used with $(document).ready()
+  // Flexslider jquery - Can also be used with $(document).ready()
   jQuery(window).load(function() {
     jQuery('.flexslider').flexslider({
       animation: "slide",
     });
   });
+
+  //animation on work page - fade in
+  (function() {
+    var elements;
+    var windowHeight;
+  
+    function init() {
+      elements = document.querySelectorAll('.hidden');
+      windowHeight = window.innerHeight;
+      console.log(elements);
+    }
+    
+    
+
+    function checkPosition() {
+      setTimeout(function() {
+        for (var i = 0; i < elements.length; i++) {
+          var element = elements[i];
+          var positionFromTop = elements[i].getBoundingClientRect().top;  
+
+          if (positionFromTop - windowHeight <= 0) {          
+              element.classList.add('fade-in-element');
+              element.classList.remove('hidden');                  
+          }        
+        }
+      }, 500) 
+    }
+  
+    window.addEventListener('scroll', checkPosition);
+    window.addEventListener('resize', init);
+  
+    init();
+    checkPosition();
+  })();
+
+
 })

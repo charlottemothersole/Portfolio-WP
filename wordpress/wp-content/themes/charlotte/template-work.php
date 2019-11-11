@@ -58,13 +58,18 @@ if( !defined( 'ABSPATH' ) ) { exit; }
     </polygon>
     
 </svg>  
-<div id='contact-container'></div>
-    <a class='contact-link' target='_blank' href='https://github.com/charlottemothersole?tab=repositories'>
+<div id='contact-container'>
+    <a class='contact-link hidden' target='_blank' href='https://github.com/charlottemothersole?tab=repositories'>
         <figure class='contact-tile'>
             <img class='icon' src='<?php echo get_template_directory_uri() ?>./github.png'/>
-            <figcaption>View On Github</figcaption>
+            <figcaption class='tile-caption'>View On Github</figcaption>
         </figure>
     </a>
+    <a class='contact-link hidden contact-tile' href="">
+        <div>
+            <p>Contact Me!</p>
+        </div>
+    </a>      
 </div>
              
 <?php 

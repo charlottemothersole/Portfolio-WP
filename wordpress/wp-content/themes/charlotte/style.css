@@ -148,17 +148,20 @@ html, body {
     top:140px;
     z-index:2;
     color:#262626;
-    padding:30px 0 20px 0;
+    padding:30px 20px 20px 20px;
     font-size:2.5rem;
 }
 
 #project-tagline {
     margin:0;
+    text-align: center;
+    padding: 0 20px;
 }
 
 .flexslider-container {
-    width:40%;
+    width:60%;
     margin:auto;
+    min-height: 487px;
 }
 
 #projects-container {
@@ -171,7 +174,7 @@ html, body {
     justify-content: center;
     align-items: center;
     position:relative;
-    padding:30px 0 30px 0;
+    padding:70px 0 10px 0;
     
 }
 
@@ -660,11 +663,6 @@ html, body {
     font-size:2rem;
 }
 
-#contact-container {
-    display:flex;
-    justify-content:center;
-}
-
 #contact-form {
     display:flex;
     flex-direction: column;
@@ -723,26 +721,67 @@ input[type=submit]:hover, input[type=submit]:active {
     filter: saturate(150%);
 }
 
+
+#contact-container {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
 .contact-tile {
-    background-color:rgba(77,0,17,0.7);
+    background-color: var(--burgundy-solid);  
+    border-radius: 5%;  
     height: 20vh;
-    width: 20vw;
-    min-width:230px;
+    min-width:250px;
     display:flex;
     flex-direction:row;
     align-items: center;
     justify-content: center;
-    margin:50px 20px;
-    padding:0 10px;
-    color:white;
+    margin: 0;
+    padding:0 20px;
+    color:var(--off-white);
+    font-size: 1.4em;
+    box-shadow: 2px 4px 6px var(--dark-grey-translucent) ;
+}
+
+.tile-caption {
+    text-align: center;
 }
 
 .contact-link {
     text-decoration: none;
+    margin:50px 30px;
 }
 
-.contact-tile:hover {    
-    background-color: var(--burgundy-solid);
+.contact-tile:hover {  
+    filter: drop-shadow(16px 16px 20px var(--burgundy-solid));
+}
+
+.hidden {
+    opacity: 0;
+}
+
+@keyframes fade-in {
+    from {opacity: 0; transform: scale(.7,.7)}
+    to {opacity: 1;}
+}
+
+.fade-in-element {    
+    animation: fade-in 3s;  
+}
+
+.hidden-home {
+    opacity: 0;
+}
+
+#welcome-overlay h1 {
+    animation: fade-in 4s 1s;
+    animation-fill-mode: forwards;
+}
+
+#welcome-overlay h2{
+    animation: fade-in 3s 5s;
+    animation-fill-mode: forwards;
 }
 
 .contact-link:active {
@@ -845,7 +884,6 @@ footer {
 
 #contact-tab {
     height:200px;
-    width:10vw;
     max-width:150px;
     background-color:rgba(77,0,17,0.7);
     text-decoration: none;
@@ -858,7 +896,7 @@ footer {
     position:fixed;
     box-shadow: -3px 3px 4px rgba(0,0,0,0.4);
     z-index:99;
-    
+    padding: 0 10px;
 }
 
 .contact-tab {  
@@ -891,6 +929,7 @@ footer {
 
     .flexslider-container {
         width: 60%;
+        min-height:420px;
     }
 }
 
@@ -1068,6 +1107,19 @@ footer {
     .flexslider-container {
         width: 75%;
     }
+    /*to move contact tiles to column*/
+    #contact-container {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .contact-tile {
+        margin: 0;
+    }
+
+    .contact-link {
+        margin: 20px 0;
+    }
 }
 
 /*LARGE MOBILE STYLES*/
@@ -1146,16 +1198,6 @@ footer {
 }
 
 /*pre-wordpress media queries*/
-@media only screen and (max-width:600px) {
-    #contact-container {
-        flex-direction:column;
-        align-items: center;
-    }
-
-    .contact-tile {
-        margin:20px 0;
-    }
-}
 
 @media only screen and (min-width:701px) and (max-width:800px) {
     footer {
