@@ -2,10 +2,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //NAVIGATION
   //defining variables
+  const burgerMenu = document.querySelector('.toggle-nav');
+  const navMenu = document.querySelector('.nav');
+  const navbar = document.querySelector('.navbar');
+  let navActive = false;
   let hoveredItems = document.querySelectorAll('.menu-item');
+
+  burgerMenu.addEventListener('click', function() {
+    navMenu.classList.toggle('nav-mobile');
+    navbar.classList.toggle('navbar-mobile');
+  }
+  );
+
   
   //function to show sub-menu element on hover
-  function identifyElement(e) {
+  function identifyHoveredElement(e) {
+    
     //identify hovered element id
     let testItem = e.target.id;
     //save hovered element
@@ -16,7 +28,28 @@ document.addEventListener('DOMContentLoaded', function () {
     if(testClosest.classList != 'sub-menu-active') {
       testClosest.classList.remove('sub-menu');
       testClosest.classList.add('sub-menu-active');
-    } 
+    }     
+  }
+
+  function identifyClickedElement(e) {    
+    if (e.type == 'click') { 
+      clickedItemId = e.target.parentNode.id;
+      clickedItem = document.getElementById(clickedItemId);      
+      closestSubMenu = clickedItem.querySelector('.sub-menu');      
+      if (navActive == false) {
+        if(closestSubMenu.classList != 'sub-menu-active') {        
+        closestSubMenu.classList.remove('sub-menu');
+        closestSubMenu.classList.add('sub-menu-active');
+        navActive = true;
+        } 
+      } else if (navActive == true) {
+        closestSubMenu = clickedItem.querySelector('.sub-menu-active');
+          closestSubMenu.classList.add('sub-menu');
+          closestSubMenu.classList.remove('sub-menu-active');
+          navActive = false;
+        }
+       
+    }
   }
 
   //function to remove sub-menu element on hover
@@ -35,14 +68,25 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
   //Event listener for hover on nav items
+  
   for (i=0;i<hoveredItems.length;i++) {
-  hoveredItems[i].addEventListener('mouseenter',identifyElement);  
+    
+    if (window.innerWidth > 450)  {
+      hoveredItems[i].addEventListener('mouseenter',identifyHoveredElement);  
+    }      
+    else if (window.innerWidth <= 450) {      
+      hoveredItems[i].addEventListener('click',identifyClickedElement);  
+    }
   }
+  
+  
   
   //Event listener for end-hover on nav items
   for (i=0;i<hoveredItems.length;i++) {
   hoveredItems[i].addEventListener('mouseleave',closeSubMenu);
   }
+
+
 
   
 
@@ -194,11 +238,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function init() {
       elements = document.querySelectorAll('.hidden');
       windowHeight = window.innerHeight;
-      console.log(elements);
-    }
+    }  
     
-    
-
     function checkPosition() {
       setTimeout(function() {
         for (var i = 0; i < elements.length; i++) {

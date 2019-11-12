@@ -21,27 +21,37 @@ html, body {
     -webkit-font-smoothing: antialiased;
 }
 
-#navbar {
+.navbar {
     position:fixed;
     background-color:#262626;    
     width:100vw;
-    height:15vh;
+    height:unset;
     display:flex;
     flex-direction:row;
-    align-items: center;
     justify-content: center;
-    z-index:99;
+    align-items: center;
+    z-index:99;    
+    padding: 10px;
 }
 
 #logo {
-    position:absolute;
-    left:30px;
-    top:30px;
+    flex: 2;
+}
+
+.nav {
+    padding: 5px 0;
+    flex: 3;
+    display:flex;
+}
+
+.toggle-nav {
+    text-decoration: none;
+    color: white;
+    display: none;
 }
 
 /* <ul>*/
-.nav-menu {
-    width:100vw;    
+.nav-menu {   
     align-items: center;
     justify-content: center;    
     z-index:10;
@@ -63,8 +73,9 @@ html, body {
 
 
 /*<li>*/
-.menu-item-object-page:hover {
+.menu-item-object-page:hover, .menu-item-type-custom:hover {
     transform:scale(1.1);
+    cursor: pointer;
 }
 
 /*sub <ul>*/
@@ -85,7 +96,6 @@ html, body {
     padding:0 0 0 10px;
     border:none;
     background-color: var(--dark-grey-translucent);
-    
 }
 
 .sub-menu-active li {
@@ -924,7 +934,7 @@ footer {
     }
     #logo {
         position:unset;
-        height:100px;
+        height:70px;
     }
 
     .flexslider-container {
@@ -1175,6 +1185,63 @@ footer {
 }
 /*MOBILE STYLES*/
 @media only screen and (min-width:200px) and (max-width:450px) {
+    #logo img {
+        width:300px;
+    }
+    /*toggle nav*/
+    .toggle-nav {
+        display: unset;
+    }
+
+    .nav {
+        display:none;
+    }
+
+    .nav-mobile {
+        display:block;        
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-menu > li {
+        padding: 5px 0;
+        
+        /* border-bottom: 1px solid white; */
+    }
+
+    .nav-menu li a {
+        border-right: none;
+        padding: 5px 0;
+    }
+
+    .has-sub-menu {
+        background-image: url(./down-arrow.png);
+        background-repeat: no-repeat;
+        background-position: right top;
+        z-index: 99;
+        min-width: 210px;
+        background-size: 22px;
+        background-origin: content-box;
+    }
+
+    .sub-menu-active {
+        position: unset;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .sub-menu-active li {
+        padding: 5px 0;
+    }
+
+    .menu-item-object-page:hover, .menu-item-type-custom:hover {
+        transform:none;
+    }
+
+
     /*Footer styles*/
     #footer-bottom {
         flex-direction: column;
@@ -1279,21 +1346,10 @@ footer {
         padding:25px 0 10px 0;               
     }
 
-    #navbar {
-        flex-direction:column;
-        justify-content: flex-start;
-        z-index:99;
-        height:15vh;
-    }
 
     .nav-item {
         border:none;        
     }
-
-    .nav {
-        padding:5px 0;
-    }
-
     
 
 }
